@@ -30,6 +30,8 @@
     padding: 16px;
     position: relative;
     z-index: 10;
+    justify-content: center;
+    align-items: center;
     > .logo {
       max-width: 6em;
       margin-right: auto;
@@ -46,5 +48,19 @@
         margin: 0 1em;
       }
     }
+
+    //0-500px的时候，menu需要隐藏起来
+    @media (max-width: 500px) {
+      > .menu{
+        display: none;
+      }
+      //0-500px的时候,logo水平居中
+      > .logo{
+        margin: 0 auto;
+      }
+    }
+    
+
+
   }
 </style>
