@@ -59,6 +59,8 @@
       left: 16px;
       top: 50%;
       transform: translateY(-50%);
+      //大于500px的时候,红色方块不会出现
+      display: none;
     }
 
     //0-500px的时候，menu需要隐藏起来
@@ -69,6 +71,10 @@
       //0-500px的时候,logo水平居中:wq
       > .logo{
         margin: 0 auto;
+      }
+        //0-500px的时候,红色方块出现
+      > .toggleAside{
+        display: inline-block;
       }
     }
     
