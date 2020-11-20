@@ -5,6 +5,7 @@
       <li>菜单1</li>
       <li>菜单2</li>
     </ul>
+    <span class="toggleAside"></span>
   </div>
 </template>
 <script lang="ts">
@@ -49,12 +50,23 @@
       }
     }
 
+    > .toggleAside {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      background: red;
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
     //0-500px的时候，menu需要隐藏起来
     @media (max-width: 500px) {
       > .menu{
         display: none;
       }
-      //0-500px的时候,logo水平居中
+      //0-500px的时候,logo水平居中:wq
       > .logo{
         margin: 0 auto;
       }
