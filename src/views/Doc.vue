@@ -2,8 +2,23 @@
   <div>
     <Topnav/>
     <div class="content">
-      <aside>边栏</aside>
-      <main>主内容</main>
+     <aside>
+       <h2>Components-List</h2>
+       <ol>
+         <li>
+           <router-link to="/doc/switch">Switch Component</router-link>
+         </li>
+         <li>
+           <router-link to="/doc/button">Button Component</router-link>
+         </li>
+         <li>
+           <router-link to="/doc/Dialog">Dialog Component</router-link>
+         </li>
+         <li>
+           <router-link to="/doc/tabs">Tabs Component</router-link>
+         </li>
+       </ol>
+     </aside>
     </div>
   </div>
 </template>
