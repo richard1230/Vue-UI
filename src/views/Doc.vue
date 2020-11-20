@@ -3,19 +3,19 @@
     <Topnav/>
     <div class="content">
      <aside>
-       <h2>Components-List</h2>
+       <h2>组件列表</h2>
        <ol>
          <li>
-           <router-link to="/doc/switch">Switch Component</router-link>
+           <router-link to="/doc/switch">Switch</router-link>
          </li>
          <li>
-           <router-link to="/doc/button">Button Component</router-link>
+           <router-link to="/doc/button">Button</router-link>
          </li>
          <li>
-           <router-link to="/doc/Dialog">Dialog Component</router-link>
+           <router-link to="/doc/Dialog">Dialog</router-link>
          </li>
          <li>
-           <router-link to="/doc/tabs">Tabs Component</router-link>
+           <router-link to="/doc/tabs">Tabs</router-link>
          </li>
        </ol>
      </aside>
@@ -37,6 +37,7 @@
     position: fixed;
     top: 0;
     left: 0;
+    padding-top: 70px;
     > h2 {
       margin-bottom: 4px;
     }
