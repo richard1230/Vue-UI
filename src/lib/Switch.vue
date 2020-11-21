@@ -32,7 +32,7 @@
     height: $h;
     width: $h*2;
     border: none;
-    background: grey;
+    background: #bfbfbf;
     border-radius: $h/2;
     position: relative;
   }
@@ -46,11 +46,11 @@
     background: white;
     border-radius: $h2 / 2;
     /*如果left有变化，就让它变化1秒钟*/
-    transition: left 250ms;
+    transition: all 250ms;
   }
 
   button.checked {
-    background: blue;
+    background: #1890ff;
   }
 
   button.checked > span {
@@ -61,4 +61,10 @@
     outline: none;
   }
 
+  button:active{
+    > span {width: $h2 + 4px;}
+  }
+  button.checked:active{
+    > span {width: $h2 + 4px; margin-left: -4px;}
+  }
 </style>
