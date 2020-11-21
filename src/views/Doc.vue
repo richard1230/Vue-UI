@@ -19,7 +19,10 @@
          </li>
        </ol>
      </aside>
-      <main>主内容</main>
+      <main>
+<!--        main.ts里面的router是确定路径，这里的router-view是显示对应的doc -->
+        <router-view/>
+      </main>
     </div>
   </div>
 </template>
@@ -30,7 +33,7 @@
     components:{Topnav},
     setup(){
       //标注asideVisible 类型为Ref类型
-      const asideVisible = inject<Ref<boolean>>('xxx')
+      const asideVisible = inject<Ref<boolean>>('asidevisible')
       console.log('topnav 获取的 asideVisible 为: '+ asideVisible.value)
      return {asideVisible}
     }

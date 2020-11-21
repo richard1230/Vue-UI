@@ -13,7 +13,7 @@
   export default {
      setup(){
        //标注asideVisible 类型为Ref类型
-       const asideVisible = inject<Ref<boolean>>('xxx')
+       const asideVisible = inject<Ref<boolean>>('asidevisible')
        console.log('topnav 获取的 asideVisible 为: '+ asideVisible.value)
        const toggleMenu = () =>{
          asideVisible.value = !asideVisible.value
