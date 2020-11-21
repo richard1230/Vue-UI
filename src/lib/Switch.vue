@@ -46,26 +46,28 @@
       /*如果left有变化，就让它变化1秒钟*/
       transition: all 250ms;
     }
-  }
+
+    button.checked {
+      background: #1890ff;
+      > span {
+        left: calc(100% - #{$h2} - 2px);
+      }
+    }
 
 
+    button:focus {
+      outline: none;
+    }
 
-  button.checked {
-    background: #1890ff;
-    > span {
-      left: calc(100% - #{$h2} - 2px);
+    button:active{
+      > span {width: $h2 + 4px;}
+    }
+    button.checked:active{
+      > span {width: $h2 + 4px; margin-left: -4px;}
     }
   }
 
 
-  button:focus {
-    outline: none;
-  }
 
-  button:active{
-    > span {width: $h2 + 4px;}
-  }
-  button.checked:active{
-    > span {width: $h2 + 4px; margin-left: -4px;}
-  }
+
 </style>
