@@ -16,7 +16,7 @@
         //将当前的value取反，通过input发给外面
         //!props.value与SwitchDemo里面的$event对应
         //input和SwitchDemo里面的input对应
-        context.emit('input',!props.value)
+        context.emit('update:value',!props.value)
       };
       //这里必须要导出toggle,不然模板里面不能用
       return { toggle};

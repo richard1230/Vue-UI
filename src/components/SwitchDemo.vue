@@ -1,7 +1,7 @@
 <template>
   <div>
 <!--    冒号表示传的是变量y,没有冒号表示传的是字符串y-->
-<Switch :value="y" @input="y = $event"/>
+<Switch :value="y" @update:value="y = $event"/>
   </div>
 </template>
 
