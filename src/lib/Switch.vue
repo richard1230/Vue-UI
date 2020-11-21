@@ -52,4 +52,8 @@
     left:calc(100% - #{$h2} - 2px) ;
   }
 
+  button:focus{
+    outline: none;
+  }
+
 </style>
