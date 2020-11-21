@@ -1,7 +1,7 @@
 <template>
   <button @click="toggle" :class="{checked:value}">
     <span></span></button>
-<!--  <div>{{value}}</div>-->
+  <!--  <div>{{value}}</div>-->
 </template>
 <script lang="ts">
   import {ref} from 'vue';
@@ -10,16 +10,16 @@
     props: {
       value: Boolean
     },
-    setup(props,context) {
+    setup(props, context) {
       // const checked = ref(false);
       const toggle = () => {
         //将当前的value取反，通过input发给外面
         //!props.value与SwitchDemo里面的$event对应
         //input和SwitchDemo里面的input对应
-        context.emit('update:value',!props.value)
+        context.emit('update:value', !props.value);
       };
       //这里必须要导出toggle,不然模板里面不能用
-      return { toggle};
+      return {toggle};
     }
   };
 
@@ -35,6 +35,7 @@
     background: #bfbfbf;
     border-radius: $h/2;
     position: relative;
+
     > span {
       position: absolute;
       top: 2px;
@@ -49,25 +50,29 @@
 
     &.checked {
       background: #1890ff;
+
       > span {
         left: calc(100% - #{$h2} - 2px);
       }
     }
 
-
     &:focus {
       outline: none;
     }
 
-    &:active{
-      > span {width: $h2 + 4px;}
+    &:active {
+      > span {
+        width: $h2 + 4px;
+      }
     }
-    &.checked:active{
-      > span {width: $h2 + 4px; margin-left: -4px;}
+
+    &.checked:active {
+      > span {
+        width: $h2 + 4px;
+        margin-left: -4px;
+      }
     }
   }
-
-
 
 
 </style>
