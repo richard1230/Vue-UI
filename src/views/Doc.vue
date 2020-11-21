@@ -1,26 +1,26 @@
 <template>
   <div class="layout">
-    <Topnav class="nav" />
+    <Topnav class="nav"/>
     <div class="content">
-     <aside v-if="asideVisible">
-       <h2>组件列表</h2>
-       <ol>
-         <li>
-           <router-link to="/doc/switch">Switch</router-link>
-         </li>
-         <li>
-           <router-link to="/doc/button">Button</router-link>
-         </li>
-         <li>
-           <router-link to="/doc/Dialog">Dialog</router-link>
-         </li>
-         <li>
-           <router-link to="/doc/tabs">Tabs</router-link>
-         </li>
-       </ol>
-     </aside>
+      <aside v-if="asideVisible">
+        <h2>组件列表</h2>
+        <ol>
+          <li>
+            <router-link to="/doc/switch">Switch</router-link>
+          </li>
+          <li>
+            <router-link to="/doc/button">Button</router-link>
+          </li>
+          <li>
+            <router-link to="/doc/Dialog">Dialog</router-link>
+          </li>
+          <li>
+            <router-link to="/doc/tabs">Tabs</router-link>
+          </li>
+        </ol>
+      </aside>
       <main>
-<!--        main.ts里面的router是确定路径，这里的router-view是显示对应的doc -->
+        <!--        main.ts里面的router是确定路径，这里的router-view是显示对应的doc -->
         <router-view/>
       </main>
     </div>
@@ -29,15 +29,16 @@
 <script lang="ts">
   import Topnav from '../components/Topnav.vue';
   import {inject, Ref} from 'vue';
+
   export default {
-    components:{Topnav},
-    setup(){
+    components: {Topnav},
+    setup() {
       //标注asideVisible 类型为Ref类型
-      const asideVisible = inject<Ref<boolean>>('asidevisible')
-      console.log('topnav 获取的 asideVisible 为: '+ asideVisible.value)
-     return {asideVisible}
+      const asideVisible = inject<Ref<boolean>>('asidevisible');
+      console.log('topnav 获取的 asideVisible 为: ' + asideVisible.value);
+      return {asideVisible};
     }
-  }
+  };
 
 </script>
 <style lang="scss" scoped>
@@ -45,9 +46,11 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
+
     > .nav {
       flex-shrink: 0;
     }
+
     > .content {
       flex-grow: 1;
       padding-top: 60px;
@@ -57,11 +60,14 @@
       }
     }
   }
+
   .content {
     display: flex;
+
     > aside {
       flex-shrink: 0;
     }
+
     > main {
       flex-grow: 1;
       padding: 16px;
@@ -94,7 +100,7 @@
 
   main {
 
-  overflow: auto;
+    overflow: auto;
 
 
   }
