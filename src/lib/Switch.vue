@@ -1,5 +1,12 @@
 <template>
-  <div>
-    Switch组件
-  </div>
+  <button>
+    <span>
+
+  </span>
+  </button>
 </template>
+
+<style lang="scss" scoped>
+
+
+</style>
