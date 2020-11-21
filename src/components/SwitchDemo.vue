@@ -1,7 +1,7 @@
 <template>
   <div>
 <!--    冒号表示传的是变量y,没有冒号表示传的是字符串y-->
-<Switch :value="y" @update:value="y = $event"/>
+<Switch v-model:value="y" />
   </div>
 </template>
 
