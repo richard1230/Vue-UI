@@ -1,10 +1,25 @@
 <template>
-  <button>
+  <button @click="toggle" :class="{checked :x}">
     <span>
 
   </span>
   </button>
 </template>
+<script lang="ts">
+  import {ref} from "vue"
+  export default {
+    setup(){
+    const x = ref(false)
+      const toggle = ()=>{
+          x.value = !x.value
+      }
+      //这里必须要导出toggle,不然模板里面不能用
+      return {x,toggle}
+
+    }
+  }
+
+</script>
 
 <style lang="scss" scoped>
  $h: 22px;
@@ -13,7 +28,7 @@
     height: $h;
     width: $h*2;
     border: none;
-    background: blue;
+    background: grey;
     border-radius: $h/2;
     position: relative;
   }
@@ -27,11 +42,11 @@
     border-radius: $h2 / 2;
   }
 
-  //https://developer.mozilla.org/en-US/docs/Web/CSS/:hover
- //css中:hover是一个伪类选择器，
- //:hover伪类选择器在鼠标移到元素上时向此元素添加特殊的样式。
- //:hover选择器适用于所有元素
-  button:hover > span{
+ button.checked{
+   background: blue;
+ }
+
+  button.checked > span{
     left:calc(100% - #{$h2} - 2px) ;
   }
 
