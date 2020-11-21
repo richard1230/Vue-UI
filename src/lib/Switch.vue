@@ -27,4 +27,12 @@
     border-radius: $h2 / 2;
   }
 
+  //https://developer.mozilla.org/en-US/docs/Web/CSS/:hover
+ //css中:hover是一个伪类选择器，
+ //:hover伪类选择器在鼠标移到元素上时向此元素添加特殊的样式。
+ //:hover选择器适用于所有元素
+  button:hover > span{
+    left:calc(100% - #{$h2} - 2px) ;
+  }
+
 </style>
