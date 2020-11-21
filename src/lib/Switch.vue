@@ -1,5 +1,5 @@
 <template>
-  <button @click="toggle" :class="{checked :x}">
+  <button @click="toggle" :class="{checked}">
     <span>
 
   </span>
@@ -9,12 +9,12 @@
   import {ref} from "vue"
   export default {
     setup(){
-    const x = ref(false)
+    const checked = ref(false)
       const toggle = ()=>{
-          x.value = !x.value
+        checked.value = !checked.value
       }
       //这里必须要导出toggle,不然模板里面不能用
-      return {x,toggle}
+      return {checked,toggle}
 
     }
   }
