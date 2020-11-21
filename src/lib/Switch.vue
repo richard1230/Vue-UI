@@ -40,6 +40,8 @@
     width: $h2;
     background:white;
     border-radius: $h2 / 2;
+    /*如果left有变化，就让它变化1秒钟*/
+    transition: left 1s;
   }
 
  button.checked{
