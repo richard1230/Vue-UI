@@ -1,13 +1,19 @@
 <template>
-  <div>
-    <button v-bind="$attrs">
+  <div :size="size">
+    <button v-bind="rest">
       <slot/>
     </button>
   </div>
 </template>
 <script lang="ts">
   export default {
-    inheritAttrs: false
+    inheritAttrs: false,
+    setup(props,context){
+      //这是es6的写法，size属性和其余的所有属性
+      //size属性绑定div元素，button绑定其余元素
+      const {size, ...rest} = context.attrs
+      return {size,rest}
+    }
   }
 </script>
 <style lang="scss" scoped>
