@@ -7,9 +7,6 @@
     <Button @click="onClick"
     @focus="onClick"
     @mouseover="onClick"
-            size = "small"
-            level = "normal"
-            disable
     >你好</Button>
   </div>
 </template>
