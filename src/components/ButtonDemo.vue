@@ -12,10 +12,24 @@
   <h1>示例2</h1>
   <div>
 
-    <Button size="big">big</Button>
+    <Button size="big" theme="button">big</Button>
     <Button >normal</Button>
-    <Button size="small">small</Button>
+    <Button size="small" theme="button">small</Button>
   </div>
+
+  <div>
+  <Button size="big" theme="link">大大大</Button>
+  <Button theme="link" >普普通通</Button>
+  <Button size="small" theme="link">小小小</Button>
+</div>
+
+<div>
+  <Button size="big" theme="text">大大大</Button>
+  <Button theme="text" >普普通通</Button>
+  <Button size="small" theme="text">小小小</Button>
+</div>
+
+
 </template>
 
 <script lang="ts">

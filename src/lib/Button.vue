@@ -4,7 +4,7 @@
   </button>
 </template>
 <script lang="ts">
-  import {computed} from "vue"
+  import {computed} from 'vue';
 
   export default {
     props: {
@@ -13,17 +13,17 @@
         default: 'button'
       },
 
-      size:{
+      size: {
         type: String,
-        default: "normal",
+        default: 'normal',
       },
     },
-    setup(props){
-      const {theme,size} = props;
-     const classes = computed(()=>{
+    setup(props) {
+      const {theme, size} = props;
+      const classes = computed(() => {
         return {
-          [`gulu-theme-${theme}`]:theme,
-          [`gulu-size-${size}`]:size,
+          [`gulu-theme-${theme}`]: theme,
+          [`gulu-size-${size}`]: size,
 
         };
       });
@@ -31,7 +31,7 @@
     },
   };
 </script>
-<style lang="scss" >
+<style lang="scss">
   $h: 32px;
   $border-color: #d9d9d9;
   $color: #333;
@@ -43,7 +43,7 @@
     padding: 0 12px;
     //光标呈现为指示链接的指针（一只手）
     cursor: pointer;
-   //https://codepen.io/clairecodes/pen/POjKXY
+    //https://codepen.io/clairecodes/pen/POjKXY
     //行内布局
     display: inline-flex;
     justify-content: center;
@@ -81,35 +81,37 @@
       border: 0;
     }
 
-    &.gulu-theme-link{
+    &.gulu-theme-link {
       border-color: transparent;
       box-shadow: none;
       color: $blue;
-      &:hover,&:focus{
+
+      &:hover, &:focus {
         color: lighten($blue, 10%);
       }
     }
-    &.gulu-theme-text{
+
+    &.gulu-theme-text {
       border-color: transparent;
       box-shadow: none;
       color: inherit;
-      &:hover,&:focus{
+
+      &:hover, &:focus {
         background: darken(white, 5%);;
       }
     }
-    &.gulu-theme-button{
-      &.gulu-size-big{
-        font-size: 24px;
-        height: 48px;
-        padding: 0 16px
-      }
-      &.gulu-size-small{
-        font-size: 12px;
-        height: 20px;
-        padding: 0 4px;
-      }
+
+    &.gulu-size-big {
+      font-size: 24px;
+      height: 48px;
+      padding: 0 16px
+    }
+
+    &.gulu-size-small {
+      font-size: 12px;
+      height: 20px;
+      padding: 0 4px;
     }
   }
-
 
 </style>
