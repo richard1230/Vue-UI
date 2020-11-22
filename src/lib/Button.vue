@@ -1,5 +1,5 @@
 <template>
-  <button class="gulu-button" :class="{[`theme-${theme}`]:theme}">
+  <button class="gulu-button" :class="{[`gulu-theme-${theme}`]:theme}">
     <slot/>
   </button>
 </template>
@@ -15,7 +15,7 @@
     },
   };
 </script>
-<style lang="scss" scoped>
+<style lang="scss" >
   $h: 32px;
   $border-color: #d9d9d9;
   $color: #333;
@@ -41,8 +41,10 @@
     border-radius: $radius;
     //https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-shadow
     //使用box-shadow来添加阴影效果
+    //fade-out:这里是对黑色进行淡化
     box-shadow: 0 1px 0 fade-out(black, 0.95);
 
+    //这里的&就是gulu-button
     & + & {
       margin-left: 8px;
     }
@@ -57,6 +59,8 @@
       outline: none;
     }
 
+    //上下两个是在一起的
+    //即&:focus和&::-moz-focus-inner
     &::-moz-focus-inner {
       border: 0;
     }
