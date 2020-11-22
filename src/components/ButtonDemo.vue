@@ -54,6 +54,10 @@
     <Button theme="text" disabled>禁用按钮</Button>
 
   </div>
+  <h1>示例5</h1>
+  <div>
+    <Button loading>加载中</Button>
+  </div>
 
 
 </template>

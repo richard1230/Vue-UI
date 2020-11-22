@@ -1,5 +1,6 @@
 <template>
   <button class="gulu-button" :class="classes" :disabled="disabled">
+   <span v-if="loading" class="gulu-loadingIndicator"></span>
     <slot/>
   </button>
 </template>
@@ -24,6 +25,11 @@
       },
 
       disabled:{
+        type: Boolean,
+        default: false
+      },
+
+      loading: {
         type: Boolean,
         default: false
       }
@@ -188,7 +194,30 @@
       }
     }
 
-  }
+    > .gulu-loadingIndicator{
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+      margin-right: 4px;
+      border-radius: 8px;
+      border-color: $blue $blue $blue transparent;
+      border-style: solid;
+      border-width: 2px;
+      animation: gulu-spin 1s infinite linear;
+    }
+    //这是动画，0%的时候为0%
+    //100% 的时候为 360度
+    //让上面的gulu-spin不停地做旋转
+    @keyframes gulu-spin {
+      0% {
+        transform: rotate(0deg)
+      }
+      100% {
+        transform: rotate(360deg)
+      }
+    }
+
+    }
 
 
 
