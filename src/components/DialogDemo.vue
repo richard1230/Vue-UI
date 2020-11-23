@@ -5,7 +5,7 @@
 <!--  默认设置点击遮罩层没有响应-->
 <!--  用户点击ok/cancle 的时候先执行 f1/f2，而后在关闭，这里是一个非常重要的需求
  因为在点击OK之前可能还需要进行其他操作，不能立即关闭，所以这里需要添加一个函数f1-->
-  <Dialog v-model:visible="x" :closeOnClickOverlay = "false" :ok="f1" :cancle="f2">
+  <Dialog v-model:visible="x" :closeOnClickOverlay = "false" :ok="f1" :cancel="f2">
     <template v-slot:content>
       <div>hi</div>
       <div>hi2</div>
@@ -13,13 +13,16 @@
     <template v-slot:title>
       <strong>加粗的标签</strong>
     </template>
-
   </Dialog>
+  <h1>示例2</h1>
+    <Button @click="showDialog">show</Button>
 </template>
 <script lang="ts">
   import Dialog from '../lib/Dialog.vue'
   import Button from '../lib/Button.vue';
-  import {ref} from "vue"
+  import {ref} from "vue";
+  import {openDialog} from '../lib/openDialog';
+
   export default {
     components:{
       Button,
@@ -39,8 +42,22 @@
       const f2=()=> {
         console.log(2)
       }
+
+      const showDialog = ()=>{
+        openDialog({
+          title:'标题',
+          content:'你好',
+          ok(){
+            console.log('ok')
+            return false
+          },
+          cancel(){
+            console.log('cancel')
+          }
+        })
+      }
       return {
-        x,toggle,f1,f2
+        x,toggle,f1,f2,showDialog
       }
     }
   }

@@ -65,7 +65,8 @@
       }
 
       const cancel = () => {
-        context.emit('cancel')
+        //propos.cancel?.()
+        props.cancel && props.cancel()
         close()
       }
 
