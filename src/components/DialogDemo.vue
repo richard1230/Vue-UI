@@ -2,7 +2,8 @@
   <div>Dialog 示例</div>
   <h1>示例1</h1>
   <Button @click="toggle">toggle</Button>
-  <Dialog v-model:visible="x" @update:visible="x = $event"></Dialog>
+<!--  默认设置点击遮罩层没有响应-->
+  <Dialog v-model:visible="x" :closeOnClickOverlay = "false"></Dialog>
 </template>
 <script lang="ts">
   import Dialog from '../lib/Dialog.vue'
