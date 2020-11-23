@@ -1,6 +1,6 @@
 <template>
   <template v-if="visible">
-    <div class="gulu-dialog-overlay"></div>
+    <div class="gulu-dialog-overlay" @click="close"></div>
     <div class="gulu-dialog-wrapper">
       <div class="gulu-dialog">
         <header>标题 <span @click="close" class=" gulu-dialog-close"></span></header>
