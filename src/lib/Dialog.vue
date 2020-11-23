@@ -1,6 +1,6 @@
 <template>
   <template v-if="visible">
-    <div class="gulu-dialog-overlay" @click="close"></div>
+    <div class="gulu-dialog-overlay" @click="OnClickOverlay"></div>
     <div class="gulu-dialog-wrapper">
       <div class="gulu-dialog">
         <header>标题 <span @click="close" class=" gulu-dialog-close"></span></header>
@@ -24,6 +24,11 @@
       visible:{
         type: Boolean,
         default: false
+      },
+      //是否能够点击遮罩层即可关闭
+      closeOnClickOverlay:{
+        type: Boolean,
+        default: true
       }
     },
     components: {
@@ -34,8 +39,14 @@
       const close = ()=>{
         context.emit('update:visible',false)
       }
+
+      const OnClickOverlay=()=>{
+        if(props.closeOnClickOverlay){
+          close();
+        }
+      }
       return {
-        close
+        close,OnClickOverlay
       }
     }
 
