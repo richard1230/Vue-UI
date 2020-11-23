@@ -3,7 +3,9 @@
   <h1>示例1</h1>
   <Button @click="toggle">toggle</Button>
 <!--  默认设置点击遮罩层没有响应-->
-  <Dialog v-model:visible="x" :closeOnClickOverlay = "false"></Dialog>
+  <Dialog v-model:visible="x" :closeOnClickOverlay = "false"
+  :ok="f1" :cancle="f2"
+  ></Dialog>
 </template>
 <script lang="ts">
   import Dialog from '../lib/Dialog.vue'
@@ -14,12 +16,23 @@
       Button,
       Dialog
     },
+
     setup(){
       const x = ref(false);
       const toggle = ()=>{
         x.value = !x.value
       }
-      return {x,toggle}
+
+      const f1=()=>{
+        console.log(1)
+        return false
+      }
+      const f2=()=> {
+        console.log(2)
+      }
+      return {
+        x,toggle,f1,f2
+      }
     }
   }
 
