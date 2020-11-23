@@ -5,7 +5,10 @@
 <!--  默认设置点击遮罩层没有响应-->
 <!--  用户点击ok/cancle 的时候先执行 f1/f2，而后在关闭，这里是一个非常重要的需求
  因为在点击OK之前可能还需要进行其他操作，不能立即关闭，所以这里需要添加一个函数f1-->
-  <Dialog v-model:visible="x" :closeOnClickOverlay = "false" :ok="f1" :cancle="f2"></Dialog>
+  <Dialog v-model:visible="x" :closeOnClickOverlay = "false" :ok="f1" :cancle="f2">
+    <div>hi</div>
+    <div>hi2</div>
+  </Dialog>
 </template>
 <script lang="ts">
   import Dialog from '../lib/Dialog.vue'
