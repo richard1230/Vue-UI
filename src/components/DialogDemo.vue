@@ -2,7 +2,7 @@
   <div>Dialog 示例</div>
   <h1>示例1</h1>
   <Button @click="toggle">toggle</Button>
-  <Dialog v-model:visible="x"></Dialog>
+  <Dialog v-model:visible="x" @update:visible="x = $event"></Dialog>
 </template>
 <script lang="ts">
   import Dialog from '../lib/Dialog.vue'

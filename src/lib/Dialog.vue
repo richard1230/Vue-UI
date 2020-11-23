@@ -3,7 +3,7 @@
     <div class="gulu-dialog-overlay"></div>
     <div class="gulu-dialog-wrapper">
       <div class="gulu-dialog">
-        <header>标题 <span class=" gulu-dialog-close"></span></header>
+        <header>标题 <span @click="close" class=" gulu-dialog-close"></span></header>
         <main>
           <p>第一行字</p>
           <p>第二行字</p>
@@ -29,6 +29,15 @@
     components: {
       Button
     },
+
+    setup(props,context){
+      const close = ()=>{
+        context.emit('update:visible',false)
+      }
+      return {
+        close
+      }
+    }
 
   };
 
