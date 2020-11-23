@@ -53,7 +53,7 @@
       }
 
       const ok = ()=>{
-        if(props.ok && props.ok()!==false){
+        if( props.ok?.()!==false){
           close();
         }
       }
