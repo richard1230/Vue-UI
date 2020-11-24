@@ -17,38 +17,40 @@
 <script lang="ts">
   import Tab from './Tab.vue';
   import {computed} from 'vue';
-
   export default {
-
     props: {
       selected: {
         type: String
       }
     },
-
     setup(props, context) {
+      //defaults也会在上面的div样式里面会用到
       const defaults = context.slots.default();
       defaults.forEach((tag) => {
         if (tag.type !== Tab) {
           throw new Error('Tabs 子标签必须是 Tab');
         }
       });
-      //filter函数返回的肯定是个数组
+      //filter函数返回的肯定是个数组,
+      //到目前为止，其实我感觉这个currentselected可能可有可无
       const currentselected = computed(() => {
         return defaults.filter((tag) => {
           return tag.props.title === props.selected;
         })[0];
       });
 
+      //titles在上面的div里面会用到
+      //title就是导航1和导航2，map函数是一个一个遍历
       const titles = defaults.map((tag) => {
         return tag.props.title;
       });
-
+      //下面这个select函数在上面的div里面会触发
       const select = (title: string) => {
         context.emit('update:selected', title);
       };
       return {
-        defaults, titles, currentselected, select
+        defaults, titles, select,
+        currentselected
       };
     }
   };
@@ -77,13 +79,13 @@
         }
       }
     }
-
     &-content {
       padding: 8px 0;
       &-item{
         display: none;
         &.selected{
           display: block;
+          color: red;
         }
       }
     }
