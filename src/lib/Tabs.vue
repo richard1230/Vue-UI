@@ -1,35 +1,55 @@
 <template>
   <div class="gulu-tabs">
     <div class="gulu-tabs-nav">
-      <div v-for="(t,index) in titles" :key="index">{{t}}</div>
+      <div class="gulu-tabs-nav-item" v-for="(t,index) in titles" @click="select(t)" :class="{selected: t===selected}"
+           :key="index">{{t}}
+      </div>
     </div>
-<!--    这里有个注意点: 用了v-for,就要用 :key-->
+    <!--    这里有个注意点: 用了v-for,就要用 :key-->
     <div class="gulu-tabs-content">
-      <component class="gulu-tabs-content-item" v-for="(c,index) in defaults" :is="c" :key="index" />
+      <component class="gulu-tabs-content-item" :is="currentselected"/>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-  import Tab from './Tab.vue'
+  import Tab from './Tab.vue';
+  import {computed} from 'vue';
+
   export default {
 
-    setup(props,context){
-      const defaults = context.slots.default()
-      defaults.forEach((tag)=>{
-       if(tag.type !== Tab) {
-          throw new Error('Tabs 子标签必须是 Tab')
-       }
-      })
-
-      const titles = defaults.map((tag)=>{
-        return tag.props.title
-      })
-      return {
-      defaults, titles
+    props: {
+      selected: {
+        type: String
       }
+    },
+
+    setup(props, context) {
+      const defaults = context.slots.default();
+      defaults.forEach((tag) => {
+        if (tag.type !== Tab) {
+          throw new Error('Tabs 子标签必须是 Tab');
+        }
+      });
+      //filter函数返回的肯定是个数组
+      const currentselected = computed(() => {
+        return defaults.filter((tag) => {
+          return tag.props.title === props.selected;
+        })[0];
+      });
+
+      const titles = defaults.map((tag) => {
+        return tag.props.title;
+      });
+
+      const select = (title: string) => {
+        context.emit('update:selected', title);
+      };
+      return {
+        defaults, titles, currentselected, select
+      };
     }
-  }
+  };
 </script>
 <style lang="scss">
   $blue: #40a9ff;
@@ -40,18 +60,22 @@
       display: flex;
       color: $color;
       border-bottom: 1px solid $border-color;
+
       &-item {
         padding: 8px 0;
         margin: 0 16px;
         cursor: pointer;
+
         &:first-child {
           margin-left: 0;
         }
+
         &.selected {
           color: $blue;
         }
       }
     }
+
     &-content {
       padding: 8px 0;
     }
