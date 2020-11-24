@@ -17,6 +17,7 @@
 <script lang="ts">
   import Tab from './Tab.vue';
   import {computed} from 'vue';
+
   export default {
     props: {
       selected: {
@@ -79,11 +80,14 @@
         }
       }
     }
+
     &-content {
       padding: 8px 0;
-      &-item{
+
+      &-item {
         display: none;
-        &.selected{
+
+        &.selected {
           display: block;
           color: red;
         }
