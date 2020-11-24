@@ -7,7 +7,9 @@
     </div>
     <!--    这里有个注意点: 用了v-for,就要用 :key-->
     <div class="gulu-tabs-content">
-      <component class="gulu-tabs-content-item" :is="currentselected"/>
+      <component class="gulu-tabs-content-item"
+                 :class="{selected: c.props.title === selected}"
+                 v-for="c in defaults" :is="c"/>
     </div>
   </div>
 </template>
@@ -78,6 +80,12 @@
 
     &-content {
       padding: 8px 0;
+      &-item{
+        display: none;
+        &.selected{
+          display: block;
+        }
+      }
     }
   }
 </style>
