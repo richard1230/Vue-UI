@@ -8,7 +8,7 @@
            :key="index">{{t}}
       </div>
       <div class="gulu-tabs-nav-indicator"
-      ref="indicator"></div>
+           ref="indicator"></div>
     </div>
     <!--    这里有个注意点: 用了v-for,就要用 :key-->
     <div class="gulu-tabs-content">
@@ -21,7 +21,7 @@
 
 <script lang="ts">
   import Tab from './Tab.vue';
-  import {computed, ref, onMounted, onUpdated} from 'vue';
+  import { ref, onMounted, onUpdated, watchEffect} from 'vue';
 
   export default {
     props: {
@@ -31,45 +31,40 @@
     },
     setup(props, context) {
       //由于这里的div有两个，所以这里的类型是[]
-      const selectedItem = ref<HTMLDivElement>(null)
+      const selectedItem = ref<HTMLDivElement>(null);
       //由于这里的蓝色横线是只有一个的，故这里的类型就是null
-      const indicator = ref<HTMLDivElement>(null)
+      const indicator = ref<HTMLDivElement>(null);
 
-      const container = ref<HTMLDivElement>(null)
+      const container = ref<HTMLDivElement>(null);
 
-      const x = ()=>{
+      const x = () => {
 
         //获取div的宽度
         const {
           width
-        } = selectedItem.value.getBoundingClientRect()
+        } = selectedItem.value.getBoundingClientRect();
         //令蓝色横线的宽度等于上面的这个div宽度
-        indicator.value.style.width = width + 'px'
+        indicator.value.style.width = width + 'px';
         //container包含了导航1和导航2，这里的left1是container的left
-        const {left:left1} = container.value.getBoundingClientRect()
+        const {left: left1} = container.value.getBoundingClientRect();
         //这里的left2是导航2的div的left
-        const {left:left2} = selectedItem.value.getBoundingClientRect()
-        const left = left2 - left1
-        indicator.value.style.left = left + 'px'
-
-      }
+        const {left: left2} = selectedItem.value.getBoundingClientRect();
+        const left = left2 - left1;
+        indicator.value.style.left = left + 'px';
+      };
       //只在第一次渲染的时候执行
-      onMounted(x)
+      onMounted(x);
 
-      onUpdated(x)
+      onUpdated(x);//后面几次
+
+      //其实这是第二处优化，但是我这捞出bug，就没这么干
+      // watchEffect(x)
       //defaults也会在上面的div样式里面会用到
       const defaults = context.slots.default();
       defaults.forEach((tag) => {
         if (tag.type !== Tab) {
           throw new Error('Tabs 子标签必须是 Tab');
         }
-      });
-      //filter函数返回的肯定是个数组,
-      //到目前为止，其实我感觉这个currentselected可能可有可无
-      const currentselected = computed(() => {
-        return defaults.filter((tag) => {
-          return tag.props.title === props.selected;
-        })[0];
       });
 
       //titles在上面的div里面会用到
@@ -85,7 +80,6 @@
         defaults,
         titles,
         select,
-        currentselected,
         selectedItem,
         indicator,
         container
@@ -117,6 +111,7 @@
           color: $blue;
         }
       }
+
       &-indicator {
         position: absolute;
         height: 3px;
