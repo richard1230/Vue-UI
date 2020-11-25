@@ -50,9 +50,9 @@
         indicator.value.style.left = left + 'px'
       };
       //只在第一次渲染的时候执行
-      onMounted(x);
+      onMounted(()=>{watchEffect(x)});
       //
-      onUpdated(x);//后面几次
+      // onUpdated(x);//后面几次
 
       //其实这是第二处优化，但是我这捞出bug，就没这么干
       // watchEffect(x)
