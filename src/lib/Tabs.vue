@@ -2,7 +2,7 @@
   <div class="gulu-tabs">
     <div class="gulu-tabs-nav" ref="container">
       <div class="gulu-tabs-nav-item"
-           v-for="(t,index) in titles" :ref="el => { if (el) navItems[index ] = el }"
+           v-for="(t,index) in titles" :ref="el => { if (t===selected) selectedItem = el }"
            @click="select(t)"
            :class="{selected: t===selected}"
            :key="index">{{t}}
@@ -31,24 +31,24 @@
     },
     setup(props, context) {
       //由于这里的div有两个，所以这里的类型是[]
-      const navItems = ref<HTMLDivElement[]>([])
+      const selectedItem = ref<HTMLDivElement>(null)
       //由于这里的蓝色横线是只有一个的，故这里的类型就是null
       const indicator = ref<HTMLDivElement>(null)
 
       const container = ref<HTMLDivElement>(null)
 
       const x = ()=>{
-        const divs = navItems.value
-        //filter返回的总是一个数组，故后面需要加一个[0]
-        //这里是获取带有selected的div
-        const result = divs.filter(div=>div.classList.contains('selected'))[0]
-        console.log(result);
+
         //获取div的宽度
-        const {width} = result.getBoundingClientRect()
+        const {
+          width
+        } = selectedItem.value.getBoundingClientRect()
         //令蓝色横线的宽度等于上面的这个div宽度
         indicator.value.style.width = width + 'px'
+        //container包含了导航1和导航2，这里的left1是container的left
         const {left:left1} = container.value.getBoundingClientRect()
-        const {left:left2} = result.getBoundingClientRect()
+        //这里的left2是导航2的div的left
+        const {left:left2} = selectedItem.value.getBoundingClientRect()
         const left = left2 - left1
         indicator.value.style.left = left + 'px'
 
@@ -82,8 +82,13 @@
         context.emit('update:selected', title);
       };
       return {
-        defaults, titles, select,
-        currentselected,navItems,indicator,container
+        defaults,
+        titles,
+        select,
+        currentselected,
+        selectedItem,
+        indicator,
+        container
       };
     }
   };
