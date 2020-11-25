@@ -10,18 +10,15 @@
       <div class="gulu-tabs-nav-indicator"
            ref="indicator"></div>
     </div>
-    <!--    这里有个注意点: 用了v-for,就要用 :key-->
     <div class="gulu-tabs-content">
-      <component class="gulu-tabs-content-item"
-                 :class="{selected: c.props.title === selected}"
-                 v-for="c in defaults" :is="c"/>
+      <component  :is="current" :key="current.props.title"/>
     </div>
   </div>
 </template>
 
 <script lang="ts">
   import Tab from './Tab.vue';
-  import { ref, onMounted, onUpdated, watchEffect} from 'vue';
+  import {ref, onMounted, onUpdated, watchEffect, computed} from 'vue';
 
   export default {
     props: {
@@ -50,11 +47,11 @@
         //这里的left2是导航2的div的left
         const {left: left2} = selectedItem.value.getBoundingClientRect();
         const left = left2 - left1;
-        indicator.value.style.left = left + 'px';
+        indicator.value.style.left = left + 'px'
       };
       //只在第一次渲染的时候执行
       onMounted(x);
-
+      //
       onUpdated(x);//后面几次
 
       //其实这是第二处优化，但是我这捞出bug，就没这么干
@@ -67,6 +64,10 @@
         }
       });
 
+      const current = computed(() => {
+        return defaults.find(tag => tag.props.title === props.selected)
+      })
+
       //titles在上面的div里面会用到
       //title就是导航1和导航2，map函数是一个一个遍历
       const titles = defaults.map((tag) => {
@@ -77,6 +78,7 @@
         context.emit('update:selected', title);
       };
       return {
+        current,
         defaults,
         titles,
         select,
@@ -118,7 +120,7 @@
         background: $blue;
         left: 0;
         bottom: -1px;
-        //其实这边宽度写死了是不对的
+        //其实这边宽度写死了是不对的,后面又添加了其他的代码来改进
         width: 100px;
         //动画
         transition: all 250ms;
@@ -128,15 +130,6 @@
 
     &-content {
       padding: 8px 0;
-
-      &-item {
-        display: none;
-
-        &.selected {
-          display: block;
-          color: red;
-        }
-      }
     }
   }
 </style>
