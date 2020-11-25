@@ -1,7 +1,10 @@
 <template>
   <div class="gulu-tabs">
     <div class="gulu-tabs-nav">
-      <div class="gulu-tabs-nav-item" v-for="(t,index) in titles" @click="select(t)" :class="{selected: t===selected}"
+      <div class="gulu-tabs-nav-item"
+           v-for="(t,index) in titles" :ref="el => { if (el) navItems[index ] = el }"
+           @click="select(t)"
+           :class="{selected: t===selected}"
            :key="index">{{t}}
       </div>
       <div class="gulu-tabs-nav-indicator"></div>
@@ -17,7 +20,7 @@
 
 <script lang="ts">
   import Tab from './Tab.vue';
-  import {computed} from 'vue';
+  import {computed, ref, onMounted} from 'vue';
 
   export default {
     props: {
@@ -26,6 +29,10 @@
       }
     },
     setup(props, context) {
+      const navItems = ref([])
+      onMounted(()=>{
+          console.log(...navItems.value)
+      })
       //defaults也会在上面的div样式里面会用到
       const defaults = context.slots.default();
       defaults.forEach((tag) => {
@@ -52,7 +59,7 @@
       };
       return {
         defaults, titles, select,
-        currentselected
+        currentselected,navItems
       };
     }
   };
@@ -87,6 +94,7 @@
         background: $blue;
         left: 0;
         bottom: -1px;
+        //其实这边宽度写死了是不对的
         width: 100px;
       }
 
