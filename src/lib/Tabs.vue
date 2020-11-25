@@ -7,7 +7,8 @@
            :class="{selected: t===selected}"
            :key="index">{{t}}
       </div>
-      <div class="gulu-tabs-nav-indicator"></div>
+      <div class="gulu-tabs-nav-indicator"
+      ref="indicator"></div>
     </div>
     <!--    这里有个注意点: 用了v-for,就要用 :key-->
     <div class="gulu-tabs-content">
@@ -29,9 +30,21 @@
       }
     },
     setup(props, context) {
-      const navItems = ref([])
+      //由于这里的div有两个，所以这里的类型是[]
+      const navItems = ref<HTMLDivElement[]>([])
+      //由于这里的蓝色横线是只有一个的，故这里的类型就是null
+      const indicator = ref<HTMLDivElement>(null)
+
       onMounted(()=>{
-          console.log(...navItems.value)
+        const divs = navItems.value
+        //filter返回的总是一个数组，故后面需要加一个[0]
+        //这里是获取带有selected的div
+        const result = divs.filter(div=>div.classList.contains('selected'))[0]
+        console.log(result);
+        //获取div的宽度
+        const {width} = result.getBoundingClientRect()
+        //令蓝色横线的宽度等于上面的这个div宽度
+        indicator.value.style.width = width + 'px'
       })
       //defaults也会在上面的div样式里面会用到
       const defaults = context.slots.default();
@@ -59,7 +72,7 @@
       };
       return {
         defaults, titles, select,
-        currentselected,navItems
+        currentselected,navItems,indicator
       };
     }
   };
