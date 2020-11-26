@@ -38,7 +38,7 @@
 
   .topnavAndBanner{
     background: linear-gradient(145deg, rgba(2,0,36,1) 0%, rgba(183,233,230,1) 0%, rgba(0,212,255,1) 100%);
-
+    clip-path: ellipse(80% 60% at 50% 40%);
   }
 
   .features {
