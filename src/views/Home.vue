@@ -1,4 +1,5 @@
 <template>
+  <div>
   <div class="topnavAndBanner">
     <Topnav />
     <div class="banner">
@@ -9,6 +10,19 @@
         <router-link to="/doc">Start</router-link>
       </p>
     </div>
+  </div>
+
+<div class="features">
+    <svg class="icon">
+      <use xlink:href="#icon-vue"></use>
+    </svg>
+    <svg class="icon">
+      <use xlink:href="#icon-ts"></use>
+    </svg>
+    <svg class="icon">
+      <use xlink:href="#icon-light"></use>
+    </svg>
+</div>
   </div>
 </template>
 <script lang="ts">
@@ -25,6 +39,13 @@
   .topnavAndBanner{
     background: linear-gradient(145deg, rgba(2,0,36,1) 0%, rgba(183,233,230,1) 0%, rgba(0,212,255,1) 100%);
 
+  }
+
+  .features {
+    >svg {
+      width: 64px;
+      height: 64px;
+    }
   }
   .banner {
     color: $color;
