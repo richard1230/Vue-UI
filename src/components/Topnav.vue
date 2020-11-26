@@ -25,7 +25,9 @@
   }
 </script>
 <style lang="scss" scoped>
+  $color: #179c97;
   .topnav {
+    color: $color;
     /*background: pink;*/
     display: flex;
     padding: 16px;
