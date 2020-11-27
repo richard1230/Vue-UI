@@ -50,9 +50,6 @@
 
 </script>
 <style lang="scss" scoped>
-  .router-link-active{
-    text-decoration: underline;
-  }
   .layout {
     display: flex;
     flex-direction: column;
@@ -89,7 +86,7 @@
   aside {
     background: lightblue;
     width: 150px;
-    padding: 16px;
+    padding: 16px 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -99,11 +96,19 @@
 
     > h2 {
       margin-bottom: 4px;
+      padding: 0 16px;
     }
 
     > ol {
       > li {
-        padding: 4px 0;
+        >a {
+          display: block;
+          padding: 4px 16px;
+          text-decoration: none;
+        }
+        .router-link-active {
+          background: white;
+        }
       }
     }
 
