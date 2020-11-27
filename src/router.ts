@@ -12,7 +12,7 @@ import Markdown from './components/Markdown.vue';
 
 
 const history = createWebHashHistory()
-const md= path=>h(Markdown,{path,key:path})
+const md= filename=>h(Markdown,{path:`../markdown/${filename}.md`,key:filename})
  export const router = createRouter({
   history: history,
   routes:[
@@ -21,9 +21,9 @@ const md= path=>h(Markdown,{path,key:path})
       //child是个数组，数组里面又是路由
       children:[
         {path: "", component: DocDemo},
-        {path: "intro", component: md("../markdown/intro.md")},
-        {path: "get-started", component: md("../markdown/get-started.md")},
-        {path: "install", component:md("../markdown/install.md")},
+        {path: "intro", component: md("intro")},
+        {path: "get-started", component: md("get-started")},
+        {path: "install", component:md("install")},
         {path: "switch",component: SwitchDemo},
         {path: "button", component:ButtonDemo},
         { path: "dialog", component: DialogDemo },
