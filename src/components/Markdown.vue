@@ -8,20 +8,20 @@
 
   export default {
     props: {
-      path: {
+      content: {
         type: String,
         required: true
       }
     },
-    setup(props) {
-      const content = ref<string>(null);
-      //异步加载,动态引入，通过then异步获取值
-      import(props.path).then(result => {
-        content.value = result.default;
-      });
-
-      return {content};
-    },
+    // setup(props) {
+    //   const content = ref<string>(null);
+    //   //异步加载,动态引入，通过then异步获取值
+    //   import(props.path).then(result => {
+    //     content.value = result.default;
+    //   });
+    //
+    //   return {content};
+    // },
 
   };
 </script>
