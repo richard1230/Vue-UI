@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Switch 组件示例 </h1>
+<!--    这里的component这个变量他其实是在Demo.vue里面已经定义了的-->
     <Demo :component="Switch1Demo" />
     <Demo :component="Switch2Demo" />
   </div>

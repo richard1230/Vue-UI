@@ -2,12 +2,14 @@
   <div class="demo">
     <h2>{{component.__sourceCodeTitle}}</h2>
     <div class="demo-component">
+<!--      这里原来是switch2Demo，这里被component所代替-->
       <component :is="component" />
     </div>
     <div class="demo-actions">
       <Button>查看代码</Button>
     </div>
     <div class="demo-code">
+<!--      这里的Switch2Demo被compponent多代替-->
       <pre class="language-html" v-html="Prism.highlight(component.__sourceCode, Prism.languages.html, 'html')" />
     </div>
 
