@@ -4,8 +4,10 @@ import fs from 'fs'
 import {baseParse} from '@vue/compiler-core'
 
 export default {
+  // ./ 说明是以https://richard1230.github.io/Vue-UI-website为基准的
+  // 如果是 / ，那么是以https://richard1230.github.io为基准
   base: './',
-  assertsDir:'assets',
+  assetsDir:'assets',
   plugins: [md()],
   vueCustomBlockTransforms: {
     demo: (options) => {
