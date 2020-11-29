@@ -20,7 +20,7 @@ export const router = createRouter({
       path: '/doc', component: Doc,
       //child是个数组，数组里面又是路由
       children: [
-        {path: '', component: DocDemo},
+        {path: '', redirect: '/doc/intro'},
         {path: 'intro', component: md('intro')},
         {path: 'get-started', component: md('get-started')},
         {path: 'install', component: md('install')},

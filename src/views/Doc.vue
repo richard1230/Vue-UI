@@ -50,10 +50,12 @@
 
 </script>
 <style lang="scss" scoped>
+  $aside-index : 10;
   .layout {
     display: flex;
     flex-direction: column;
     height: 100vh;
+
 
     > .nav {
       flex-shrink: 0;
@@ -92,6 +94,7 @@
     left: 0;
     padding-top: 70px;
     height: 100%;
+    z-index: $aside-index;
 
 
     > h2 {
